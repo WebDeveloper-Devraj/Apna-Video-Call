@@ -43,14 +43,17 @@ app.use((err, req, res, next) => {
 });
 
 const start = async () => {
-  await mongoose.connect(process.env.MONGO_URI);
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
 
-  const PORT = process.env.PORT || 8000;
+    const PORT = process.env.PORT || 8000;
 
-  server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    process.exit(1);
-  });
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("🔥 Startup error:", error);
+  }
 };
 
 start();
