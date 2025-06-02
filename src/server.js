@@ -44,12 +44,11 @@ app.use((err, req, res, next) => {
 });
 
 const start = async () => {
-  await mongoose.connect(
-    "mongodb+srv://devrajpujari292:ApnaZoom@apnazoomcluster.8fogiz2.mongodb.net/zoom"
-  );
+  await mongoose.connect(process.env.MONGO_URI);
 
   server.listen(app.get("port"), () => {
-    console.log("LISTENING ON PORT 8000");
+    console.log(`Server running on port ${app.get("port")}`);
+    process.exit(1);
   });
 };
 
