@@ -23,7 +23,6 @@ app.use(
   })
 );
 
-app.set("port", process.env.PORT || 8000);
 app.use(express.json({ limit: "40kb" }));
 app.use(express.urlencoded({ limit: "40kb", extended: true }));
 
@@ -46,8 +45,10 @@ app.use((err, req, res, next) => {
 const start = async () => {
   await mongoose.connect(process.env.MONGO_URI);
 
-  server.listen(app.get("port"), () => {
-    console.log(`Server running on port ${app.get("port")}`);
+  const PORT = process.env.PORT || 8000;
+
+  server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
     process.exit(1);
   });
 };
