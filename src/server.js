@@ -17,7 +17,10 @@ const io = connectToSocket(server);
 // Enable CORS so that your frontend can make requests
 app.use(
   cors({
-    origin: ["http://localhost:5173"], // Allow only frontend origin
+    origin: [
+      "http://localhost:5173",
+      "https://apna-video-call-frontend.vercel.app",
+    ], // Allow only frontend origin
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Allow cookies and authentication headers
   })
